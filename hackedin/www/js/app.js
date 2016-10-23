@@ -46,8 +46,11 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
             .state('menu.setting', {
               //
               url: '/setting',
-              templateUrl:'templates/setting.html'
-
+              views: {
+                  'right_side': {
+                      templateUrl:'templates/setting.html'
+                  }
+              }
             })
 
             .state('menu.home', {
@@ -55,10 +58,15 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 url: '/home',
                 abstract: true,
                 views: {
-                    'home': {
+                    'right_side': {
                         templateUrl: 'templates/home.html'
                     }
                 }
+            })
+
+            .state('menu.event-registration', {
+                url: '/event-registration',
+                templateUrl: 'templates/event-registration.html'
             })
 
             .state('menu.home.tab-connect', {
