@@ -66,7 +66,11 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
 
             .state('menu.event-registration', {
                 url: '/event-registration',
-                templateUrl: 'templates/event-registration.html'
+                views: {
+                    'right_side': {
+                        templateUrl: 'templates/event-registration.html'
+                  }
+                }
             })
 
             .state('menu.home.tab-connect', {
