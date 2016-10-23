@@ -4,22 +4,26 @@ angular.module('SimpleRESTIonic.controllers', [])
         //Write post request for the server in order to establish
     })
 
-    .controller('conversationCtrl', function(){
+    .controller('ConversationCtrl', function(){
       //Write post request for the server in order to have communication
     })
 
-    .controller('eventRegisterCtrl', function(){
+    .controller('EventRegisterCtrl', function(Backand, $state, $rootScope, UsersModel){
+        var registrar = this;
+        var id = Backand.getUserDetails().$$state.value.userId;
+
       //Write post request for the server in order to have send the key
-      function submitEventAccessCode(){
-          console.log("hello")
-      }
+        function submit(){
+            UsersModel.update(id, {key: registrar.key});
+        }
+
+        registrar.submit = submit;
     })
 
 
     .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService) {
         var login = this;
         function signin() {
-            console.log('hi');
             LoginService.signin(login.email, login.password)
                 .then(function () {
                     onLogin();
@@ -67,6 +71,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         function getAll() {
             ItemsModel.all()
                 .then(function (result) {
+
                     vm.data = result.data.data;
                 });
         }

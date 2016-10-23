@@ -11,10 +11,10 @@ angular.module('SimpleRESTIonic.services', [])
         };
     })
 
-    .service('ItemsModel', function ($http, Backand) {
+    .service('UsersModel', function ($http, Backand) {
         var service = this,
             baseUrl = '/1/objects/',
-            objectName = 'items/';
+            objectName = 'users/';
 
         function getUrl() {
             return Backand.getApiUrl() + baseUrl + objectName;
@@ -27,6 +27,7 @@ angular.module('SimpleRESTIonic.services', [])
         service.all = function () {
             return $http.get(getUrl());
         };
+
 
         service.fetch = function (id) {
             return $http.get(getUrlForId(id));
