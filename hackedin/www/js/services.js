@@ -1,4 +1,3 @@
-
 angular.module('SimpleRESTIonic.services', [])
 
     .service('APIInterceptor', function ($rootScope, $q) {
