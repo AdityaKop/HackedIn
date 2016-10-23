@@ -74,7 +74,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 views: {
                     'tab-connect': {
                         templateUrl: 'templates/tab-connect.html',
-                        controller: 'DashboardCtrl as vm'
+                        // controller: 'DashboardCtrl as vm'
                     }
                 }
             })
