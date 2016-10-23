@@ -4,6 +4,18 @@ angular.module('SimpleRESTIonic.controllers', [])
         //Write post request for the server in order to establish
     })
 
+    .controller('conversationCtrl', function(){
+      //Write post request for the server in order to have communication
+    })
+
+    .controller('eventRegisterCtrl', function(){
+      //Write post request for the server in order to have send the key
+      function submitEventAccessCode(){
+          console.log("hello")
+      }
+    })
+
+
     .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService) {
         var login = this;
         function signin() {

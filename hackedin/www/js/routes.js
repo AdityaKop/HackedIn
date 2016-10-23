@@ -24,7 +24,7 @@ angular.module('SimpleRESTIonic.routes', [])
     url: '/conversation/:id',
     views: {
       'tab-messaging': {
-        templateUrl: 'templates/conversation.html',
+        templateUrl: 'templates/tab-messaging.html',
         controller: 'conversationCtrl'
       }
     }
