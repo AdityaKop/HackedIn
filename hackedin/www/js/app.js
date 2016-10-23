@@ -27,13 +27,24 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
         BackandProvider.setAnonymousToken('21dc82f5-f76b-48cc-962f-b5664774a56b'); // token is for anonymous login. see http://docs.backand.com/en/latest/apidocs/security/index.html#anonymous-access
 
         $stateProvider
-            // setup an abstract state for the tabs directive
-            .state('tab', {
+        // ROUTING
+            .state('menu', {
+                url: '/menu',
+                abstract: true,
+                templateUrl: 'templates/side-menu.html'
+            })
+
+            .state('menu.tab', {
                 url: '/tabs',
                 abstract: true,
-                templateUrl: 'templates/tabs.html'
+                views: {
+                    'tabs': {
+                        templateUrl: 'templates/tabs.html'
+                    }
+                }
             })
-            .state('tab.dashboard', {
+
+            .state('menu.tab.dashboard', {
                 url: '/dashboard',
                 views: {
                     'tab-dashboard': {
@@ -42,7 +53,8 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                     }
                 }
             })
-            .state('tab.login', {
+
+            .state('menu.tab.login', {
                 url: '/login',
                 views: {
                     'tab-login': {
@@ -52,7 +64,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 }
             });
 
-        $urlRouterProvider.otherwise('/tabs/dashboard');
+        $urlRouterProvider.otherwise('/menu/tabs/dashboard');
 
         $httpProvider.interceptors.push('APIInterceptor');
     })
