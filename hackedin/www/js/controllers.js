@@ -21,7 +21,7 @@ angular.module('SimpleRESTIonic.controllers', [])
             $rootScope.$broadcast('authorized');
             login.email = '';
             login.password = '';            
-            $state.go('tab.dashboard');
+            $state.go('menu.tab.dashboard');
         }
 
         function signout() {
