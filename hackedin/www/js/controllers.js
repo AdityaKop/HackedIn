@@ -1,9 +1,13 @@
 angular.module('SimpleRESTIonic.controllers', [])
 
+    .controller('ProfileCtrl', function(Backand, $state, $rootScope) {
+        //Write post request for the server in order to establish
+    })
+
     .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService) {
         var login = this;
-
         function signin() {
+            console.log('hi');
             LoginService.signin(login.email, login.password)
                 .then(function () {
                     onLogin();
@@ -20,8 +24,8 @@ angular.module('SimpleRESTIonic.controllers', [])
         function onLogin(){
             $rootScope.$broadcast('authorized');
             login.email = '';
-            login.password = '';            
-            $state.go('menu.tab.dashboard');
+            login.password = '';
+            $state.go('menu.home.tab-connect');
         }
 
         function signout() {
@@ -138,4 +142,3 @@ angular.module('SimpleRESTIonic.controllers', [])
         getAll();
 
     });
-

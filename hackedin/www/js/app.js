@@ -28,44 +28,70 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
 
         $stateProvider
         // ROUTING
+
             .state('menu', {
+              //This is the menu that basically covers everything
                 url: '/menu',
                 abstract: true,
                 templateUrl: 'templates/side-menu.html'
             })
 
-            .state('menu.tab', {
-                url: '/tabs',
+            .state('login', {
+              //This is for the login
+                url: '/login',
+                templateUrl: 'templates/root-login.html',
+                controller: 'LoginCtrl as login'
+            })
+
+            .state('menu.setting', {
+              //
+              url: '/setting',
+              templateUrl:'templates/setting.html'
+
+            })
+
+            .state('menu.home', {
+              //This html includes all the possible tabs
+                url: '/home',
                 abstract: true,
                 views: {
-                    'tabs': {
-                        templateUrl: 'templates/tabs.html'
+                    'home': {
+                        templateUrl: 'templates/home.html'
                     }
                 }
             })
 
-            .state('menu.tab.dashboard', {
-                url: '/dashboard',
+            .state('menu.home.tab-connect', {
+                url: '/connect',
                 views: {
-                    'tab-dashboard': {
-                        templateUrl: 'templates/tab-dashboard.html',
+                    'tab-connect': {
+                        templateUrl: 'templates/tab-connect.html',
                         controller: 'DashboardCtrl as vm'
                     }
                 }
             })
 
-            .state('menu.tab.login', {
-                url: '/login',
+            .state('menu.home.tab-messaging', {
+                url: '/messaging',
                 views: {
-                    'tab-login': {
-                        templateUrl: 'templates/tab-login.html',
-                        controller: 'LoginCtrl as login'
+                    'tab-messaging': {
+                        templateUrl: 'templates/tab-messaging.html',
+                        controller: 'MessageCtrl as messagectrl'
                     }
                 }
-            });
+            })
 
-        $urlRouterProvider.otherwise('/menu/tabs/dashboard');
+            .state('menu.home.tab-profile', {
+                url: '/profile',
+                views: {
+                    'tab-profile': {
+                        templateUrl: 'templates/tab-profile.html',
+                        controller: 'ProfileCtrl as profilectrl'
+                    }
+                }
+            })
 
+        $urlRouterProvider.otherwise('/login');
         $httpProvider.interceptors.push('APIInterceptor');
     })
 
@@ -73,7 +99,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
 
         function unauthorized() {
             console.log("user is unauthorized, sending to login");
-            $state.go('menu.tab.login');
+            $state.go('menu.login');
         }
 
         function signout() {
@@ -85,13 +111,11 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
         });
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-            if (toState.name == 'menu.tab.login') {
+            if (toState.name == 'menu.login') {
                 signout();
             }
-            else if (toState.name != 'menu.tab.login' && Backand.getToken() === undefined) {
+            else if (toState.name != 'menu.login' && Backand.getToken() === undefined) {
                 unauthorized();
             }
         });
-
-    })
-
+    });
