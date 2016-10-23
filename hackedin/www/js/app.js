@@ -68,8 +68,10 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 url: '/event-registration',
                 views: {
                     'right_side': {
-                        templateUrl: 'templates/event-registration.html'
+                        templateUrl: 'templates/event-registration.html',
+                        controller: 'eventRegisterCtrl'
                   }
+
                 }
             })
 
@@ -78,7 +80,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 views: {
                     'tab-connect': {
                         templateUrl: 'templates/tab-connect.html',
-                        // controller: 'DashboardCtrl as vm'
+                        controller: 'DashboardCtrl as vm'
                     }
                 }
             })

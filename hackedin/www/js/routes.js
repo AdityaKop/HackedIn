@@ -7,81 +7,82 @@ angular.module('SimpleRESTIonic.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
+  // ROUTING
 
+      .state('menu', {
+        //This is the menu that basically covers everything
+          url: '/menu',
+          abstract: true,
+          templateUrl: 'templates/side-menu.html'
+      })
 
+      .state('login', {
+        //This is for the login
+          url: '/login',
+          templateUrl: 'templates/root-login.html',
+          controller: 'LoginCtrl as login'
+      })
 
-  .state('tabsController.connect', {
-    url: '/connect',
-    views: {
-      'tab-connect': {
-        templateUrl: 'templates/connect.html',
-        controller: 'connectCtrl'
-      }
-    }
-  })
+      .state('menu.setting', {
+        //
+        url: '/setting',
+        views: {
+            'right_side': {
+                templateUrl:'templates/setting.html'
+            }
+        }
+      })
 
-  .state('tabsController.conversation', {
-    url: '/conversation/:id',
-    views: {
-      'tab-messaging': {
-        templateUrl: 'templates/tab-messaging.html',
-        controller: 'conversationCtrl'
-      }
-    }
-  })
+      .state('menu.home', {
+        //This html includes all the possible tabs
+          url: '/home',
+          abstract: true,
+          views: {
+              'right_side': {
+                  templateUrl: 'templates/home.html'
+              }
+          }
+      })
 
-  .state('tabsController.profile', {
-    url: '/profile',
-    views: {
-      'tab-profile': {
-        templateUrl: 'templates/profile.html',
-        controller: 'profileCtrl'
-      }
-    }
-  })
+      .state('menu.event-registration', {
+          url: '/event-registration',
+          views: {
+              'right_side': {
+                  templateUrl: 'templates/event-registration.html'
+            }
+          }
+      })
 
-  .state('tabsController', {
-    url: '/page1',
-    templateUrl: 'templates/tabsController.html',
-    abstract:true
-  })
+      .state('menu.home.tab-connect', {
+          url: '/connect',
+          views: {
+              'tab-connect': {
+                  templateUrl: 'templates/tab-connect.html',
+                  // controller: 'DashboardCtrl as vm'
+              }
+          }
+      })
 
-  .state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'loginCtrl'
-  })
+      .state('menu.home.tab-messaging', {
+          url: '/messaging',
+          views: {
+              'tab-messaging': {
+                  templateUrl: 'templates/tab-messaging.html',
+                  controller: 'MessageCtrl as messagectrl'
+              }
+          }
+      })
 
-  .state('signup', {
-    url: '/signup',
-    templateUrl: 'templates/signup.html',
-    controller: 'signupCtrl'
-  })
+      .state('menu.home.tab-profile', {
+          url: '/profile',
+          views: {
+              'tab-profile': {
+                  templateUrl: 'templates/tab-profile.html',
+                  controller: 'ProfileCtrl as profilectrl'
+              }
+          }
+      })
 
-  .state('settings', {
-    url: '/settings',
-    templateUrl: 'templates/settings.html',
-    controller: 'settingsCtrl'
-  })
-
-  .state('eventRegister', {
-    url: '/event-reg',
-    templateUrl: 'templates/eventRegister.html',
-    controller: 'eventRegisterCtrl'
-  })
-
-  .state('tabsController.messages', {
-    url: '/messages',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/messages.html',
-        controller: 'messagesCtrl'
-      }
-    }
-  })
-
-$urlRouterProvider.otherwise('/login')
-
-
-
-});
+  $urlRouterProvider.otherwise('/login');
+  $httpProvider.interceptors.push('APIInterceptor');
+})

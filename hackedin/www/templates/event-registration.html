@@ -1,10 +1,12 @@
 <ion-view title="Event Register" id="page10">
   <ion-content padding="true" class="has-header">
-    <form id="eventRegister-form14" class="list">
+    <form ng-submit="eventRegisterCtrl.submitEventAccessCode()">
       <label class="item item-input">
         <input type="text" placeholder="Access Code" id="eventRegister-value">
       </label>
     </form>
-    <button class="button button-positive button-block" type="submit">Confirm</button>
+    <button class="button button-positive button-block" type="submit">
+      Confirm
+    </button>
   </ion-content>
 </ion-view>
